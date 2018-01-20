@@ -1,0 +1,6 @@
+[package]
+name = "rusty-playground"
+version = "0.1.0"
+authors = ["Bob Chatman <bob.chatman@gmail.com>"]
+
+[dependencies]
