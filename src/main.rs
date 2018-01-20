@@ -1,3 +1,23 @@
+#[macro_use] 
+
+extern crate log;
+extern crate env_logger;
+extern crate winit;
+
+use log::Level;
+
 fn main() {
-    println!("Hello, world!");
+    env_logger::init();
+
+    let mut events_loop = winit::EventsLoop::new();
+    let window = winit::Window::new(&events_loop).unwrap();
+
+    events_loop.run_forever(|event| {
+        match event {
+            winit::Event::WindowEvent { event: winit::WindowEvent::Closed, .. } => {
+                winit::ControlFlow::Break
+            },
+            _ => winit::ControlFlow::Continue,
+        }
+    });
 }

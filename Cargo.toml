@@ -3,4 +3,24 @@ name = "rusty-playground"
 version = "0.1.0"
 authors = ["Bob Chatman <bob.chatman@gmail.com>"]
 
+[features]
+default = []
+dx12 = ["gfx-backend-dx12"]
+vulkan = ["gfx-backend-vulkan"]
+
+[[bin]]
+name = "rusty-playground"
+path = "src/main.rs"
+
 [dependencies]
+log = "0.4.1"
+winit = "0.10.0"
+env_logger = "0.5.2"
+time = "0.1.39"
+gfx = "0.17.1"
+cgmath = "0.15"
+gfx-hal = { git = "https://github.com/gfx-rs/gfx.git", rev= "7d4b4f1" }
+gfx-backend-vulkan = { git = "https://github.com/gfx-rs/gfx.git", rev= "7d4b4f1", optional = true, features = ["glsl-to-spirv"] }
+
+[target.'cfg(windows)'.dependencies]
+gfx-backend-dx12 = { git = "https://github.com/gfx-rs/gfx.git", rev= "7d4b4f1" , optional = true}
