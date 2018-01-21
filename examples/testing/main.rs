@@ -15,10 +15,10 @@ fn main() {
 
     let mut events_loop = EventsLoop::new();
 
-    match rusty_playground::init(&"Testing", &events_loop) {
-        Ok(_window) => {
+    match rusty_playground::init(&"Testing", events_loop) {
+        Ok(mut renderer) => {
             while running  {
-                events_loop.poll_events(|event| {
+                renderer.events_loop.poll_events(|event| {
                     if let WindowEvent { event, .. } = event {
                         match event {   
                             window_event::KeyboardInput {
