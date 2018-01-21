@@ -4,14 +4,14 @@ extern crate log;
 extern crate env_logger;
 extern crate winit;
 
-use winit::{EventsLoop, WindowBuilder, WindowEvent as window_event, ControlFlow};
+use winit::{EventsLoop, WindowEvent as window_event, ControlFlow};
 use winit::Event::WindowEvent;
 
 fn main() {
     let mut events_loop = EventsLoop::new();
 
     match rusty_playground::init(&"Testing", &events_loop) {
-        Ok(window) => {
+        Ok(_window) => {
             events_loop.run_forever(|event| {
                 match event {
                     WindowEvent { event: window_event::Closed, .. } => {
@@ -21,7 +21,7 @@ fn main() {
                 }
             });
         },
-        Err(error) => {
+        Err(_error) => {
 
         }
     }
