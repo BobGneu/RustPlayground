@@ -12,7 +12,7 @@ log = "0.4.1"
 winit = "0.10.0"
 env_logger = "0.5.2"
 time = "0.1.39"
-gfx = "*"        
+gfx = "0.17.1"
 
 [[example]]
 name = "testing"
