@@ -1,17 +1,13 @@
-#[macro_use] 
-
 extern crate log;
 extern crate env_logger;
 extern crate winit;
-
-use log::Level;
 
 fn main() {
     env_logger::init();
 
     let mut events_loop = winit::EventsLoop::new();
     let win_builder = winit::WindowBuilder::new();
-    let window = win_builder.with_title("Rust Playground")
+    let _window = win_builder.with_title("Rust Playground")
         .build(&events_loop)
         .unwrap();
 
