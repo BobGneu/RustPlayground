@@ -10,7 +10,10 @@ fn main() {
     env_logger::init();
 
     let mut events_loop = winit::EventsLoop::new();
-    let window = winit::Window::new(&events_loop).unwrap();
+    let win_builder = winit::WindowBuilder::new();
+    let window = win_builder.with_title("Rust Playground")
+        .build(&events_loop)
+        .unwrap();
 
     events_loop.run_forever(|event| {
         match event {
