@@ -1,10 +1,12 @@
 extern crate winit;
 
 mod util;
+mod renderer;
 
 use std::env;
 use winit::{Window, WindowBuilder, EventsLoop, CreationError};
 use util::OS;
+use renderer::Renderer;
 
 const VERSION: &'static str = env!("CARGO_PKG_VERSION");
 
@@ -17,7 +19,7 @@ pub fn get_target() -> &'static str {
     return "-dev";
 }
 
-pub fn init (game_name: &str, events_loop: &EventsLoop) -> Result<Window, CreationError> {
+pub fn init (game_name: &str, events_loop: &EventsLoop) -> Result<Renderer, CreationError> {
     let win_builder = WindowBuilder::new();
 
     let _window = win_builder
@@ -26,5 +28,7 @@ pub fn init (game_name: &str, events_loop: &EventsLoop) -> Result<Window, Creati
         .build(&events_loop)
         .unwrap();
 
-    Ok(_window)
+    Ok(Renderer {
+        window: _window 
+    })
 }
