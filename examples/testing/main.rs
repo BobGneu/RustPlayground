@@ -9,13 +9,25 @@ use winit::{EventsLoop, WindowEvent as window_event, ControlFlow};
 use winit::Event::WindowEvent;
 use winit::WindowEvent::{KeyboardInput};
 
+use rusty_playground::RendererOptions;
+
+pub fn get_version() -> &'static str { 
+    return "1.0.0";
+}
+
+// TODO: Replace with the string from the compile time env variable: PROFILE
+pub fn get_target() -> &'static str {
+    return "-dev";
+}
+
 fn main() {
     let mut running: bool = true;
-    env_logger::init();
-
     let mut events_loop = EventsLoop::new();
 
-    match rusty_playground::init(&"Testing", events_loop) {
+    match rusty_playground::init(RendererOptions{
+        events_loop: events_loop,
+        title: format!("{} v{}{}", "Testing", get_version(), get_target())
+    }) {
         Ok(mut renderer) => {
             while running  {
                 renderer.events_loop.poll_events(|event| {
@@ -56,7 +68,6 @@ fn main() {
                         }
                     } else if let winit::Event::DeviceEvent { event, .. } = event {
                         // TODO: DeviceEvent handled here
-                        debug!("");
                     } else {
                         println!("?  {:?}", event);
                     }
