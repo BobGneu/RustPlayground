@@ -13,20 +13,18 @@ extern crate gfx_backend_vulkan as back;
 mod util;
 mod renderer;
 
-use std::env;
-use winit::{Window, WindowBuilder, EventsLoop, CreationError};
-use util::OS;
+use winit::{CreationError};
 pub use renderer::{Renderer, RendererOptions};
 
 const VERSION: &'static str = env!("CARGO_PKG_VERSION");
 
 pub fn get_version() -> &'static str { 
-    return "1.0.0";
+    return VERSION;
 }
 
 pub fn init (options : RendererOptions) -> Result<Renderer, CreationError> {
     env_logger::init();
-    debug!("{}", OS::name());
+    debug!("Intializing Rusty v{}", get_version());
 
     Ok(Renderer::new(options))
 }
