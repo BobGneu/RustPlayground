@@ -1,4 +1,10 @@
 extern crate winit;
+extern crate cgmath;
+extern crate gfx_hal as hal;
+#[cfg(feature = "dx12")]
+extern crate gfx_backend_dx12 as back;
+#[cfg(feature = "vulkan")]
+extern crate gfx_backend_vulkan as back;
 
 mod util;
 mod renderer;
@@ -20,18 +26,6 @@ pub fn get_target() -> &'static str {
 }
 
 pub fn init (game_name: &str, events_loop: EventsLoop) -> Result<Renderer, CreationError> {
-    /*let win_builder = WindowBuilder::new();
-
-    let _window = win_builder
-        .with_min_dimensions(800, 600)
-        .with_title()
-        .build(&events_loop)
-        .unwrap();
-
-    Ok(Renderer {
-        window: _window 
-    })*/
-
     Ok(Renderer::new(RendererOptions{
         events_loop: events_loop,
         title: format!("{} v{}{} :: {}", game_name, get_version(), get_target(), OS::name())
