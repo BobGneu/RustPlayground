@@ -4,17 +4,12 @@ extern crate env_logger;
 
 extern crate winit;
 extern crate cgmath;
-extern crate gfx_hal as hal;
-#[cfg(feature = "dx12")]
-extern crate gfx_backend_dx12 as back;
-#[cfg(feature = "vulkan")]
-extern crate gfx_backend_vulkan as back;
 
 mod util;
-mod renderer;
+pub mod renderer;
 
 use winit::{CreationError};
-pub use renderer::{Renderer, RendererOptions};
+use renderer::{Renderer, RendererOptions};
 
 const VERSION: &'static str = env!("CARGO_PKG_VERSION");
 

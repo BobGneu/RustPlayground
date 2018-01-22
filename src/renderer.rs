@@ -1,4 +1,3 @@
-
 use winit::{Window, WindowBuilder, EventsLoop};
 
 pub struct Renderer {
@@ -18,8 +17,17 @@ impl Renderer {
             .with_title(options.title)
             .with_dimensions(options.dimensions[0], options.dimensions[1]);
 
+        let _window = builder.build(&options.events_loop).unwrap();
+                
+        /*let (_instance, mut adapters, mut surface) = {
+            let instance = Backend::Instance::create("gfx-rs ocean", 1);
+            let surface = instance.create_surface(&_window);
+            let adapters = instance.enumerate_adapters();
+            (instance, adapters, surface)
+        };*/
+
         return Renderer{
-            window: builder.build(&options.events_loop).unwrap(),
+            window: _window,
             events_loop: options.events_loop
         };
     }

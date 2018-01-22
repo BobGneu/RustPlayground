@@ -5,11 +5,12 @@ extern crate log;
 extern crate env_logger;
 extern crate winit;
 
+
 use winit::{EventsLoop, WindowEvent as window_event, ControlFlow};
 use winit::Event::WindowEvent;
 use winit::WindowEvent::{KeyboardInput};
 
-use rusty_playground::RendererOptions;
+use rusty_playground::renderer::RendererOptions;
 
 pub fn get_version() -> &'static str { 
     return "1.0.0";

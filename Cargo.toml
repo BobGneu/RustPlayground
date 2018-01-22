@@ -5,22 +5,14 @@ authors = ["Bob Chatman <bob.chatman@gmail.com>"]
 publish = false
 
 [features]
-default = ["gfx-backend-dx12"]
-dx12 = ["gfx-backend-dx12"]
-vulkan = ["gfx-backend-vulkan"]
+default = []
 
 [dependencies]
 log = "0.4.1"
 winit = "0.10.0"
 env_logger = "0.5.2"
 time = "0.1.39"
-gfx = "0.17.1"
-gfx-hal = { git = "https://github.com/gfx-rs/gfx.git" }
-gfx-backend-vulkan = { git = "https://github.com/gfx-rs/gfx.git", optional = true, features = ["glsl-to-spirv"] }
 cgmath = "0.15"
-
-[target.'cfg(windows)'.dependencies]
-gfx-backend-dx12 = { git = "https://github.com/gfx-rs/gfx.git", optional = true }
 
 [[example]]
 name = "testing"
