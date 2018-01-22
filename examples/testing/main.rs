@@ -26,7 +26,8 @@ fn main() {
 
     match rusty_playground::init(RendererOptions{
         events_loop: events_loop,
-        title: format!("{} v{}{}", "Testing", get_version(), get_target())
+        title: format!("{} v{}{}", "Testing", get_version(), get_target()),
+        dimensions: [1400, 900]
     }) {
         Ok(mut renderer) => {
             while running  {
