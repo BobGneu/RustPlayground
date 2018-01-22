@@ -19,12 +19,12 @@ impl Renderer {
 
         let _window = builder.build(&options.events_loop).unwrap();
                 
-        /*let (_instance, mut adapters, mut surface) = {
-            let instance = Backend::Instance::create("gfx-rs ocean", 1);
+        let (_instance, mut adapters, mut surface) = {
+            let instance = Backend::Instance::create(format!("gfx-rs {}", options.title), 1);
             let surface = instance.create_surface(&_window);
             let adapters = instance.enumerate_adapters();
             (instance, adapters, surface)
-        };*/
+        };
 
         return Renderer{
             window: _window,

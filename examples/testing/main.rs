@@ -5,7 +5,6 @@ extern crate log;
 extern crate env_logger;
 extern crate winit;
 
-
 use winit::{EventsLoop, WindowEvent as window_event, ControlFlow};
 use winit::Event::WindowEvent;
 use winit::WindowEvent::{KeyboardInput};
