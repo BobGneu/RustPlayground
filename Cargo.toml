@@ -5,7 +5,7 @@ authors = ["Bob Chatman <bob.chatman@gmail.com>"]
 publish = false
 
 [features]
-default = ["dx12"]
+default = []
 dx12 = ["gfx-backend-dx12"]
 vulkan = ["gfx-backend-vulkan"]
 
@@ -22,5 +22,5 @@ gfx-backend-vulkan = { git = "https://github.com/gfx-rs/gfx.git", rev= "7d4b4f1"
 gfx-backend-dx12 = { git = "https://github.com/gfx-rs/gfx.git", rev= "7d4b4f1" , optional = true}
 
 [[example]]
-name = "testing"
-path = "examples/testing/main.rs"
+name = "window"
+path = "examples/window/main.rs"

@@ -2,7 +2,7 @@
 extern crate log;
 extern crate env_logger;
 extern crate gfx_hal as GFX_HAL;
-#[cfg(feature = "dx12")]
+#[cfg(all(windows, feature = "dx12"))]
 extern crate gfx_backend_dx12 as GFXBackend;
 #[cfg(feature = "vulkan")]
 extern crate gfx_backend_vulkan as GFXBackend;

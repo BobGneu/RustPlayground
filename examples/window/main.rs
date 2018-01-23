@@ -1,13 +1,12 @@
-extern crate rusty_playground;
-
-#[macro_use]
 extern crate log;
 extern crate env_logger;
 extern crate winit;
 
-use winit::{EventsLoop, WindowEvent as window_event, ControlFlow};
+extern crate rusty_playground;
+
+use winit::{EventsLoop, WindowEvent as window_event};
 use winit::Event::WindowEvent;
-use winit::WindowEvent::{KeyboardInput};
+use winit::WindowEvent::KeyboardInput;
  
 use rusty_playground::renderer::RendererOptions;
 
@@ -22,7 +21,7 @@ pub fn get_target() -> &'static str {
 
 fn main() {
     let mut running: bool = true;
-    let mut events_loop = EventsLoop::new();
+    let events_loop = EventsLoop::new();
 
     match rusty_playground::init(RendererOptions{
         events_loop: events_loop,
@@ -34,7 +33,7 @@ fn main() {
                 renderer.events_loop.poll_events(|event| {
                     if let WindowEvent { event, .. } = event {
                         match event {   
-                            window_event::KeyboardInput {
+                            KeyboardInput {
                                 input: winit::KeyboardInput {
                                     virtual_keycode: Some(winit::VirtualKeyCode::Escape),
                                 .. 
@@ -45,7 +44,7 @@ fn main() {
                                 input,
                                 ..
                             } => {
-                                println!("K  {:?}", event);
+                                println!("K  {:?}", input);
                             },
                             winit::WindowEvent::MouseInput {
                                 ..
@@ -68,7 +67,7 @@ fn main() {
                             }
                         }
                     } else if let winit::Event::DeviceEvent { event, .. } = event {
-                        // TODO: DeviceEvent handled here
+                        println!("D  {:?}", event);
                     } else {
                         println!("?  {:?}", event);
                     }

@@ -51,9 +51,9 @@ build: false
 # Equivalent to Travis' `script` phase
 # TODO modify this phase as you see fit
 test_script:
-  - cargo test --verbose
-  - cargo build --release --verbose
-  - cargo build --example testing --release --verbose
+  - cargo test
+  - cargo build --features dx12 --release
+  - cargo build --features dx12 --example window --release
 
 notifications:
   - provider: Webhook
