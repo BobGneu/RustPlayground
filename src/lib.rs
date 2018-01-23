@@ -1,14 +1,18 @@
 #[macro_use]
 extern crate log;
 extern crate env_logger;
+
 extern crate gfx_hal as GFX_HAL;
 #[cfg(all(windows, feature = "dx12"))]
-extern crate gfx_backend_dx12 as GFXBackend;
-#[cfg(feature = "vulkan")]
-extern crate gfx_backend_vulkan as GFXBackend;
-extern crate winit;
+extern crate gfx_backend_dx12 as GFX_Backend;
+#[cfg(all (windows, feature = "vulkan"))]
+extern crate gfx_backend_vulkan as GFX_Backend;
+#[cfg(feature = "metal")]
+extern crate gfx_backend_metal as GFX_Backend;
+#[cfg(feature = "gl")]
+extern crate gfx_backend_gl as GFX_Backend;
 
-mod util;
+extern crate winit;
 
 pub mod renderer;
 

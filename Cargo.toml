@@ -8,6 +8,7 @@ publish = false
 default = []
 dx12 = ["gfx-backend-dx12"]
 vulkan = ["gfx-backend-vulkan"]
+gl = ["gfx-backend-gl"]
 
 [dependencies]
 log = "0.4.1"
@@ -16,10 +17,11 @@ env_logger = "0.5.3"
 time = "0.1.39"
 cgmath = "0.16.0"
 gfx-hal = { git = "https://github.com/gfx-rs/gfx.git" }
-gfx-backend-vulkan = { git = "https://github.com/gfx-rs/gfx.git", rev= "7d4b4f1", optional = true, features = ["glsl-to-spirv"] }
+gfx-backend-vulkan = { git = "https://github.com/gfx-rs/gfx.git", optional = true, features = ["glsl-to-spirv"] }
+gfx-backend-gl = { git = "https://github.com/gfx-rs/gfx.git", optional = true, features = ["glutin"] }
 
 [target.'cfg(windows)'.dependencies]
-gfx-backend-dx12 = { git = "https://github.com/gfx-rs/gfx.git", rev= "7d4b4f1" , optional = true}
+gfx-backend-dx12 = { git = "https://github.com/gfx-rs/gfx.git", optional = true }
 
 [[example]]
 name = "window"
