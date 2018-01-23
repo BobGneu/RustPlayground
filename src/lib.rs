@@ -5,11 +5,11 @@ extern crate env_logger;
 extern crate gfx_hal as GFX_HAL;
 #[cfg(all(windows, feature = "dx12"))]
 extern crate gfx_backend_dx12 as GFX_Backend;
-#[cfg(all (windows, feature = "vulkan"))]
+#[cfg(all(any(windows, unix, linux), feature = "vulkan"))]
 extern crate gfx_backend_vulkan as GFX_Backend;
-#[cfg(feature = "metal")]
+#[cfg(any(macos, feature = "metal"))]
 extern crate gfx_backend_metal as GFX_Backend;
-#[cfg(feature = "gl")]
+#[cfg(any(unix, linux, feature = "gl"))]
 extern crate gfx_backend_gl as GFX_Backend;
 
 extern crate winit;
