@@ -1,3 +1,8 @@
+
+use GFX_HAL::Backend;
+use GFXBackend::Backend as B;
+use GFXBackend;
+
 use winit::{Window, WindowBuilder, EventsLoop};
 
 pub struct Renderer {
@@ -14,16 +19,16 @@ pub struct RendererOptions {
 impl Renderer {
     pub fn new(options: RendererOptions) -> Self {
         let builder = WindowBuilder::new()
-            .with_title(options.title)
+            .with_title(options.title.to_string())
             .with_dimensions(options.dimensions[0], options.dimensions[1]);
 
         let _window = builder.build(&options.events_loop).unwrap();
                 
-        let (_instance, mut adapters, mut surface) = {
-            let instance = Backend::Instance::create(format!("gfx-rs {}", options.title), 1);
+        let (_instance, mut surface) = {
+            let instance = GFXBackend::Instance::create(&format!("gfx-rs {}", options.title.to_string()), 1);
             let surface = instance.create_surface(&_window);
-            let adapters = instance.enumerate_adapters();
-            (instance, adapters, surface)
+            // let adapters = instance.enumerate_adapters();
+            (instance, surface)
         };
 
         return Renderer{

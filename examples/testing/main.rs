@@ -8,13 +8,13 @@ extern crate winit;
 use winit::{EventsLoop, WindowEvent as window_event, ControlFlow};
 use winit::Event::WindowEvent;
 use winit::WindowEvent::{KeyboardInput};
-
+ 
 use rusty_playground::renderer::RendererOptions;
 
 pub fn get_version() -> &'static str { 
     return "1.0.0";
 }
-
+ 
 // TODO: Replace with the string from the compile time env variable: PROFILE
 pub fn get_target() -> &'static str {
     return "-dev";
