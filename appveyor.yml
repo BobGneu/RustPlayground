@@ -27,7 +27,7 @@ environment:
 #    - TARGET: i686-pc-windows-gnu
 #      CHANNEL: nightly
 #    - TARGET: i686-pc-windows-msvc
-#      CHANNEL: nightly
+#      CHANNEL: nightly 
 #    - TARGET: x86_64-pc-windows-gnu
 #      CHANNEL: nightly
 #    - TARGET: x86_64-pc-windows-msvc
@@ -61,8 +61,10 @@ notifications:
     method: GET
     
 artifacts:
-  - path: target/release/obj_2_smd.exe
-    name: obj_2_smd
+  - path: target/release/librusty_playground.rlib
+    name: librusty_playground
+  - path: target/release/examples/testing.exe
+    name: testing
 
 cache:
   - target
