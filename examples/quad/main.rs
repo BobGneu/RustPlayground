@@ -18,6 +18,7 @@ extern crate winit;
 extern crate image;
 
 mod window;
+mod vertex;
 
 use hal::{buffer, command, device as d, format as f, image as i, memory as m, pass, pso, pool};
 use hal::{Device, Instance, PhysicalDevice, Surface, Swapchain};
@@ -31,24 +32,17 @@ use hal::pso::{PipelineStage, ShaderStageFlags, Specialization};
 use hal::queue::Submission;
 
 use std::io::Cursor;
+use vertex::{Vertex, Position};
 
 const ENTRY_NAME: &str = "main";
-
-#[derive(Debug, Clone, Copy)]
-#[allow(non_snake_case)]
-struct Vertex {
-    a_Pos: [f32; 2],
-    a_Uv: [f32; 2],
-}
-
 const QUAD: [Vertex; 6] = [
-    Vertex { a_Pos: [ -0.5, 0.33 ], a_Uv: [0.0, 1.0] },
-    Vertex { a_Pos: [  0.5, 0.33 ], a_Uv: [1.0, 1.0] },
-    Vertex { a_Pos: [  0.5,-0.33 ], a_Uv: [1.0, 0.0] },
+    Vertex { position: Position {x: -0.5, y:  0.33 }, texture_coordinate: Position { x: 0.0, y: 1.0} },
+    Vertex { position: Position {x:  0.5, y:  0.33 }, texture_coordinate: Position { x: 1.0, y: 1.0} },
+    Vertex { position: Position {x:  0.5, y: -0.33 }, texture_coordinate: Position { x: 1.0, y: 0.0} },
 
-    Vertex { a_Pos: [ -0.5, 0.33 ], a_Uv: [0.0, 1.0] },
-    Vertex { a_Pos: [  0.5,-0.33 ], a_Uv: [1.0, 0.0] },
-    Vertex { a_Pos: [ -0.5,-0.33 ], a_Uv: [0.0, 0.0] },
+    Vertex { position: Position {x: -0.5, y:  0.33 }, texture_coordinate: Position { x: 0.0, y: 1.0} },
+    Vertex { position: Position {x:  0.5, y: -0.33 }, texture_coordinate: Position { x: 1.0, y: 0.0} },
+    Vertex { position: Position {x: -0.5, y: -0.33 }, texture_coordinate: Position { x: 0.0, y: 0.0} },
 ];
 
 const COLOR_RANGE: i::SubresourceRange = i::SubresourceRange {
