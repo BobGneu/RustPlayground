@@ -1,5 +1,5 @@
 [package]
-name = "rusty-playground"
+name = "rusty"
 version = "0.1.0"
 authors = ["Bob Chatman <bob.chatman@gmail.com>"]
 publish = false

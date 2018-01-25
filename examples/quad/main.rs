@@ -3,6 +3,7 @@
     allow(dead_code, unused_extern_crates, unused_imports)
 )]
 
+extern crate rusty;
 extern crate env_logger;
 extern crate gfx_hal as hal;
 #[cfg(feature = "dx12")]
@@ -17,9 +18,6 @@ extern crate gfx_backend_gl as GFXBackend;
 extern crate winit;
 extern crate image;
 
-mod window;
-mod vertex;
-
 use hal::{buffer, command, device as d, format as f, image as i, memory as m, pass, pso, pool};
 use hal::{Device, Instance, PhysicalDevice, Surface, Swapchain};
 use hal::{
@@ -31,8 +29,10 @@ use hal::pass::Subpass;
 use hal::pso::{PipelineStage, ShaderStageFlags, Specialization};
 use hal::queue::Submission;
 
+use rusty::vertex::{Vertex};
+use rusty::position::{Position};
+use rusty::window;
 use std::io::Cursor;
-use vertex::{Vertex, Position};
 
 const ENTRY_NAME: &str = "main";
 const QUAD: [Vertex; 6] = [

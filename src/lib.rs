@@ -15,15 +15,10 @@ extern crate gfx_hal as hal;
 extern crate image;
 extern crate winit;
 
-use hal::{buffer, command, device as d, format as f, image as i, memory as m, pass, pool, pso};
-use hal::{Device, Instance, PhysicalDevice, Surface, Swapchain};
-use hal::{Backbuffer, DescriptorPool, FrameSync, Primitive, SwapchainConfig};
-use hal::format::{AsFormat, ChannelType, Rgba8Srgb as ColorFormat, Swizzle};
-use hal::pass::Subpass;
-use hal::pso::{PipelineStage, ShaderStageFlags, Specialization};
-use hal::queue::Submission;
-
 pub mod renderer;
+pub mod position;
+pub mod vertex;
+pub mod window;
 
 use winit::CreationError;
 use renderer::{Renderer, RendererOptions};
