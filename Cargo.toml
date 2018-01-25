@@ -20,10 +20,11 @@ gfx-hal = { git = "https://github.com/gfx-rs/gfx.git" }
 gfx-backend-vulkan = { git = "https://github.com/gfx-rs/gfx.git", optional = true, features = ["glsl-to-spirv"] }
 gfx-backend-gl = { git = "https://github.com/gfx-rs/gfx.git", optional = true, features = ["glutin"] }
 gfx-backend-metal = { git = "https://github.com/gfx-rs/gfx.git", optional = true }
+image = "0.18.0"
 
 [target.'cfg(windows)'.dependencies]
 gfx-backend-dx12 = { git = "https://github.com/gfx-rs/gfx.git", optional = true }
 
 [[example]]
-name = "window"
-path = "examples/window/main.rs"
+name = "quad"
+path = "examples/quad/main.rs"

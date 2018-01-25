@@ -1,31 +1,40 @@
+extern crate env_logger;
 #[macro_use]
 extern crate log;
-extern crate env_logger;
 
-extern crate gfx_hal as GFX_HAL;
-#[cfg(all(windows, feature = "dx12"))]
-extern crate gfx_backend_dx12 as GFX_Backend;
-#[cfg(all(any(windows, unix, linux), feature = "vulkan"))]
-extern crate gfx_backend_vulkan as GFX_Backend;
-#[cfg(any(macos, feature = "metal"))]
-extern crate gfx_backend_metal as GFX_Backend;
-#[cfg(any(unix, linux, feature = "gl"))]
-extern crate gfx_backend_gl as GFX_Backend;
+#[cfg(feature = "dx12")]
+extern crate gfx_backend_dx12 as back;
+#[cfg(feature = "gl")]
+extern crate gfx_backend_gl as back;
+#[cfg(feature = "metal")]
+extern crate gfx_backend_metal as back;
+#[cfg(feature = "vulkan")]
+extern crate gfx_backend_vulkan as back;
+extern crate gfx_hal as hal;
 
+extern crate image;
 extern crate winit;
+
+use hal::{buffer, command, device as d, format as f, image as i, memory as m, pass, pool, pso};
+use hal::{Device, Instance, PhysicalDevice, Surface, Swapchain};
+use hal::{Backbuffer, DescriptorPool, FrameSync, Primitive, SwapchainConfig};
+use hal::format::{AsFormat, ChannelType, Rgba8Srgb as ColorFormat, Swizzle};
+use hal::pass::Subpass;
+use hal::pso::{PipelineStage, ShaderStageFlags, Specialization};
+use hal::queue::Submission;
 
 pub mod renderer;
 
-use winit::{CreationError};
+use winit::CreationError;
 use renderer::{Renderer, RendererOptions};
 
 const VERSION: &'static str = env!("CARGO_PKG_VERSION");
 
-pub fn get_version() -> &'static str { 
+pub fn get_version() -> &'static str {
     return VERSION;
 }
 
-pub fn init (options : RendererOptions) -> Result<Renderer, CreationError> {
+pub fn init(options: RendererOptions) -> Result<Renderer, CreationError> {
     env_logger::init();
     info!("Intializing Rusty v{}", get_version());
 
